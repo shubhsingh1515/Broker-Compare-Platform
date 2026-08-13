@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Compiled Tailwind & Kenvora Base Styles -->
+	<link rel="stylesheet" href="css/styles-C_Vq8lMG.css" data-precedence="default">
+	<!-- Dedicated Broker Compare Standalone Custom CSS -->
+	<link rel="stylesheet" href="css/broker-compare.css">
+	
+	<title>Broker Compare — Kenvora Capital | Compare Stock & Forex Brokers Side-by-Side</title>
+	<meta name="author" content="Kenvora capital">
+	<meta name="description" content="Compare stock and forex brokers side-by-side. Analyze SEBI & ASIC regulations, MT4/MT5 platforms, leverage, zero AMC fees, and raw spreads dynamically.">
+</head>
+
+<body>
+	<div class="min-h-screen text-foreground overflow-x-hidden">
+		
+		<!-- HEADER (EXACT MATCH WITH HOME PAGE INDEX.HTML) -->
+		<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border/40">
+			<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+				<a href="index.html" class="flex items-center gap-2">
+					<div class="size-8 rounded-md bg-gradient-to-br from-gold-light to-gold-dark grid place-items-center">
+						<span class="text-primary-foreground font-bold text-sm" style="color:#fff !important;">K</span>
+					</div>
+					<span class="font-display text-xl tracking-tight">Kenvora <span class="text-gold">Capital</span></span>
+				</a>
+
+				<nav class="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+					<a href="index.html#how" class="hover:text-foreground transition">How It Works</a>
+					<a href="index.html#results" class="hover:text-foreground transition">Results</a>
+					<a href="broker-compare.html" class="hover:text-foreground transition text-gold font-semibold">Broker Compare</a>
+					<a href="index.html#pricing" class="hover:text-foreground transition">Pricing</a>
+					<a href="index.html#faq" class="hover:text-foreground transition">FAQ</a>
+				</nav>
+
+				<div class="flex items-center gap-3">
+					<a href="#comparison-engine" id="headerCompareCounterBtn" data-no-popup="true" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-bold hover:bg-gold/20 transition">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
+						<span class="text-gold">Compare (<span id="compareCountBadge" class="text-gold">0</span>)</span>
+					</a>
+
+					<a href="index.html#pricing" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-br from-gold-light to-gold-dark text-white text-sm font-semibold hover:opacity-90 transition shadow-xs">
+						<span style="color:#fff !important;">Start Copying</span> 
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<!-- HERO BANNER SECTION -->
+	<section
+    class="relative pb-16 px-6"
+    style="margin-top: 80px; background: linear-gradient(180deg, #f7f3ee 0%, #f1ecdf 100%);"
+>
+			<div class="max-w-4xl mx-auto relative text-center space-y-6">
+				<div class="eyebrow-tag mx-auto">
+					<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+					<span>Side-by-Side Broker Comparison Engine</span>
+				</div>
+
+				<h1 class="font-display max-w-4xl mx-auto ">
+					Compare <span class="text-gold-gradient italic">Stock & Forex Brokers</span> <span class="whitespace-nowrap">Side-by-Side</span>
+				</h1>
+
+				<p class="text-xs md:text-sm max-w-xl mx-auto leading-relaxed" style="color: rgba(23, 21, 17, 0.75) !important;">
+					Examine leverage, brokerage fees, MT4/MT5 platforms, SEBI & ASIC regulations, raw spreads, and hidden charges dynamically in one transparent matrix.
+				</p>
+
+				<!-- Hero Live Search Input -->
+				<div class="max-w-xl mx-auto relative pt-1">
+					<div class="flex items-center gap-2 p-1.5 bg-white border border-gold/30 rounded-full shadow-md backdrop-blur-md">
+						<svg width="18" height="18" class="size-4 text-gray-400 ml-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+						<input type="text" id="heroSearchInput" placeholder="Search Zerodha, Exness, Groww, Vantage, MT5..." class="w-full bg-transparent text-xs text-foreground placeholder-muted-foreground outline-none py-2 px-1">
+						<button id="heroSearchBtn" data-no-popup="true" class="px-6 py-2.5 rounded-full bg-gradient-to-br from-gold-light to-gold-dark text-white font-bold text-xs hover:opacity-90 transition whitespace-nowrap shadow-sm">
+							<span style="color:#fff !important;">Search Brokers</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Quick Category Pills -->
+				<div class="hero-category-pills">
+					<button onclick="setFilterType('stock')" data-no-popup="true" class="border border-emerald/30 bg-white text-emerald hover:bg-emerald/10 transition shadow-xs">
+						📈 Stock Brokers (SEBI)
+					</button>
+					<button onclick="setFilterType('forex')" data-no-popup="true" class="border border-purple/30 bg-white text-purple hover:bg-purple/10 transition shadow-xs">
+						🌐 Forex Brokers (FX)
+					</button>
+					<button onclick="setFilterTag('beginners')" data-no-popup="true" class="border border-amber/30 bg-white text-amber hover:bg-amber/10 transition shadow-xs">
+						🏆 Best for Beginners
+					</button>
+					<button onclick="setFilterTag('options')" data-no-popup="true" class="border border-sky/30 bg-white text-sky hover:bg-sky/10 transition shadow-xs">
+						⚡ Best for Options
+					</button>
+					<button onclick="setFilterTag('scalping')" data-no-popup="true" class="border border-rose/30 bg-white text-rose hover:bg-rose/10 transition shadow-xs">
+						✨ Best for Scalping
+					</button>
+					<button onclick="setFilterTag('long-term')" data-no-popup="true" class="border border-cyan/30 bg-white text-cyan hover:bg-cyan/10 transition shadow-xs">
+						🛡️ Best for Long Term
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- POPULAR HEAD-TO-HEAD MATCHUPS -->
+		<section class="compare-section">
+			<div class="section-header-flex">
+				<div>
+					<span class="eyebrow-tag">Top Requested Head-to-Head</span>
+					<h2 class="section-title">Popular Broker Matchups</h2>
+				</div>
+				<button id="toggleMatchupsBtn" onclick="togglePopularMatchupsLimit()" data-no-popup="true" class="text-xs font-bold text-gold hover:underline flex items-center gap-1">
+					<span id="toggleMatchupsBtnText">View All Matchups</span>
+					<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-xs"><path d="m9 18 6-6-6-6"/></svg>
+				</button>
+			</div>
+
+			<div id="popularMatchupsContainer" class="popular-matchups-grid">
+				<div class="p-8 text-center kenvora-card text-muted-foreground text-xs col-span-2">Loading popular matchups...</div>
+			</div>
+		</section>
+
+		<!-- 3-SLOT SIDE-BY-SIDE COMPARISON ENGINE SECTION -->
+		<section id="comparison-engine" class="compare-section">
+			<div class="section-header-flex border-b border-border/40 pb-4">
+				<div>
+					<span class="eyebrow-tag">Interactive Dashboard</span>
+					<h2 class="section-title">Side-by-Side Comparison Engine</h2>
+					<p class="section-subtitle">Select up to 3 brokers to analyze leverage, regulation, spreads, and dynamic winner highlights</p>
+				</div>
+
+				<div class="flex items-center gap-2.5">
+					<button onclick="clearComparisonState()" data-no-popup="true" class="px-4 py-2 rounded-full border border-red-500/30 text-red-600 text-xs font-bold hover:bg-red-500/10 transition">
+						Clear Comparison
+					</button>
+				</div>
+			</div>
+
+			<!-- 3 Picker Slots -->
+			<div class="slots-grid" id="comparisonSlotCards">
+				<!-- Rendered by JS -->
+			</div>
+
+			<!-- Comparison Matrix Container -->
+			<div id="comparisonMatrixContainer" class="matrix-table-card">
+				<div class="p-12 text-center text-muted-foreground space-y-3">
+					<div class="w-12 h-12 rounded-full bg-gold/10 text-gold mx-auto flex items-center justify-center border border-gold/30">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+					</div>
+					<h3 class="font-bold text-foreground">Select at least 2 brokers to compare</h3>
+					<p class="text-xs max-w-md mx-auto leading-relaxed">Choose brokers above or click "+ Compare" on any broker card in the directory below to load side-by-side specs and winner badges.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- VERIFIED BROKER DIRECTORY / FILTER GRID -->
+		<section id="brokers-directory" class="compare-section">
+			<div class="section-header-flex border-b border-border/40 pb-4">
+				<div>
+					<span class="eyebrow-tag">Empirically Verified</span>
+					<h2 class="section-title">Broker Directory</h2>
+					<p class="section-subtitle" id="directoryCountText">Showing verified broker profiles</p>
+				</div>
+
+				<!-- Sort Dropdown -->
+				<div class="flex items-center gap-2.5">
+					<span class="text-[10.5px] font-bold text-muted-foreground uppercase">Sort By:</span>
+					<select id="sortSelect" class="bg-white border border-border/60 rounded-xl px-3 py-2 text-xs font-bold text-foreground outline-none focus:border-gold shadow-xs">
+						<option value="rating_desc">Highest Rated</option>
+						<option value="trust_desc">Highest Trust Score</option>
+						<option value="deposit_asc">Lowest Min Deposit</option>
+						<option value="newest">Newest Listed</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="directory-layout">
+				
+				<!-- Sidebar Filters -->
+				<div class="kenvora-card rounded-2xl p-4 space-y-4 h-fit sticky top-20">
+					<div class="flex items-center justify-between pb-2.5 border-b border-border/40">
+						<h3 class="font-bold text-foreground text-xs flex items-center gap-1.5">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gold icon-xs"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+							<span>Filter Brokers</span>
+						</h3>
+						<button onclick="resetDirectoryFilters()" data-no-popup="true" class="text-[11px] font-bold text-gold hover:underline">Reset</button>
+					</div>
+
+					<!-- Category Radios -->
+					<div class="space-y-1.5">
+						<label class="block text-[10px] font-extrabold text-muted-foreground uppercase tracking-wider">Category</label>
+						<div class="space-y-1">
+							<label class="filter-option-row">
+								<input type="radio" name="typeRadio" value="all" checked onchange="handleFilterChange()">
+								<span class="font-medium">All Brokers</span>
+							</label>
+							<label class="filter-option-row">
+								<input type="radio" name="typeRadio" value="stock" onchange="handleFilterChange()">
+								<span class="font-medium">Stock Brokers</span>
+							</label>
+							<label class="filter-option-row">
+								<input type="radio" name="typeRadio" value="forex" onchange="handleFilterChange()">
+								<span class="font-medium">Forex Brokers</span>
+							</label>
+						</div>
+					</div>
+
+					<!-- Platforms Checkboxes -->
+					<div class="space-y-1.5 pt-2.5 border-t border-border/40">
+						<label class="block text-[10px] font-extrabold text-muted-foreground uppercase tracking-wider">Trading Platforms</label>
+						<div class="space-y-1">
+							<label class="filter-option-row">
+								<input type="checkbox" id="chkMt4" onchange="handleFilterChange()">
+								<span class="font-medium">MetaTrader 4 (MT4)</span>
+							</label>
+							<label class="filter-option-row">
+								<input type="checkbox" id="chkMt5" onchange="handleFilterChange()">
+								<span class="font-medium">MetaTrader 5 (MT5)</span>
+							</label>
+							<label class="filter-option-row">
+								<input type="checkbox" id="chkTradingView" onchange="handleFilterChange()">
+								<span class="font-medium">TradingView Charts</span>
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- Brokers Cards Grid -->
+				<div class="space-y-8">
+					<div id="brokersGridContainer" class="brokers-cards-grid">
+						<!-- Rendered dynamically -->
+					</div>
+
+					<!-- Pagination -->
+					<div id="paginationContainer" class="flex items-center justify-between pt-4 border-t border-border/40 text-xs">
+						<span id="paginationText" class="text-muted-foreground font-semibold text-[11px]">Page 1 of 1</span>
+						<div class="flex items-center gap-2">
+							<button id="prevPageBtn" onclick="changePage(-1)" data-no-popup="true" class="px-4 py-2 rounded-xl bg-white border border-border/60 font-bold disabled:opacity-40 hover:bg-gray-50 transition shadow-xs text-xs">Previous</button>
+							<button id="nextPageBtn" onclick="changePage(1)" data-no-popup="true" class="px-4 py-2 rounded-xl bg-white border border-border/60 font-bold disabled:opacity-40 hover:bg-gray-50 transition shadow-xs text-xs">Next</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- TRADING GUIDES & ARTICLES -->
+		<section class="compare-section">
+			<div class="section-header-wrap">
+				<span class="eyebrow-tag">Education & Fee Guides</span>
+				<h2 class="section-title">Latest Articles & Reviews</h2>
+			</div>
+
+			<div id="blogsContainer" class="blogs-grid">
+				<!-- Dynamically filled -->
+			</div>
+		</section>
+
+		<!-- TRADERS COMMUNITY TESTIMONIALS -->
+		<section class="compare-section">
+			<div class="section-header-wrap text-center">
+				<span class="eyebrow-tag mx-auto">Community Reviews</span>
+				<h2 class="section-title">What Traders Say</h2>
+			</div>
+
+			<div id="testimonialsContainer" class="testimonials-grid">
+				<!-- Dynamically filled -->
+			</div>
+		</section>
+
+		<!-- FREQUENTLY ASKED QUESTIONS -->
+		<section class="compare-section-narrow">
+			<div class="section-header-wrap text-center">
+				<span class="eyebrow-tag mx-auto">Clear Answers</span>
+				<h2 class="section-title">Frequently Asked Questions</h2>
+				<p class="section-subtitle max-w-md mx-auto">Everything you need to know about comparing stock and forex broker charges.</p>
+			</div>
+
+			<div id="faqsContainer" class="faq-list-wrap">
+				<!-- Dynamically filled by JS -->
+			</div>
+		</section>
+
+		<!-- CONTACT & NEWSLETTER SECTION -->
+		<section class="compare-section">
+			<div class="forms-grid">
+				
+				<!-- Contact Form -->
+				<div class="kenvora-card">
+					<div class="space-y-1.5 mb-6">
+						<span class="eyebrow-tag">Direct Support</span>
+						<h3 class="section-title" style="font-size: 1.4rem !important;">Have Questions or Want a Broker Listed?</h3>
+						<p class="section-subtitle">Send your query directly to our analyst team.</p>
+					</div>
+
+					<form id="contactForm">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+							<div class="form-group mb-0">
+								<label class="form-label">Your Name *</label>
+								<input type="text" id="contactName" required placeholder="John Doe" class="form-input-field">
+							</div>
+							<div class="form-group mb-0">
+								<label class="form-label">Email Address *</label>
+								<input type="email" id="contactEmail" required placeholder="john@example.com" class="form-input-field">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="form-label">Subject *</label>
+							<input type="text" id="contactSubject" required placeholder="Broker Inquiry / Listing Request" class="form-input-field">
+						</div>
+
+						<div class="form-group">
+							<label class="form-label">Message *</label>
+							<textarea id="contactMessage" rows="4" required placeholder="Write your query details here..." class="form-input-field" style="resize:vertical; min-height:110px;"></textarea>
+						</div>
+
+						<button type="submit" data-no-popup="true" class="gold-submit-btn">
+							<span style="color:#fff !important;">Send Message ↗</span>
+						</button>
+					</form>
+				</div>
+
+				<!-- Newsletter Box -->
+				<div class="kenvora-gold-panel flex flex-col justify-between">
+					<div class="space-y-3 mb-6">
+						<span class="eyebrow-tag">Weekly Broker Intelligence</span>
+						<h3 class="section-title" style="font-size: 1.4rem !important;">Get Realtime Fee Updates & Spread Alerts</h3>
+						<p class="section-subtitle">
+							Subscribe to receive weekly reports on regulatory changes, broker fee drops, trading bonus offers, and spread updates directly in your inbox.
+						</p>
+					</div>
+
+					<form id="newsletterForm">
+						<div class="form-group mb-5">
+							<label class="form-label">Your Email Address *</label>
+							<input type="email" id="newsletterEmail" required placeholder="enter.your.email@domain.com" class="form-input-field">
+						</div>
+						<button type="submit" data-no-popup="true" class="gold-submit-btn">
+							<span style="color:#fff !important;">Subscribe to Updates 🔔</span>
+						</button>
+					</form>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer class="border-t border-border/40 py-10 px-6">
+			<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
+				<a href="index.html" class="flex items-center gap-2">
+					<div class="size-7 rounded-md bg-gradient-to-br from-gold-light to-gold-dark grid place-items-center">
+						<span class="text-primary-foreground font-bold text-xs" style="color:#fff !important;">K</span>
+					</div>
+					<span class="font-display text-base">Kenvora <span class="text-gold">Capital</span></span>
+				</a>
+
+				<div class="text-[11px] text-muted-foreground text-center max-w-xl leading-relaxed">
+					Risk disclosure: Trading forex and CFDs carries significant risk and may not be suitable for all investors. Past performance is not indicative of future results. Only trade with capital you can afford to lose.
+				</div>
+
+				<div class="text-[11px] text-muted-foreground">
+					© 2026 Kenvora Capital
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- SLOT PICKER MODAL -->
+	<div id="slotModalBackdrop" class="custom-modal-backdrop" onclick="if(event.target===this) closeSlotModal()">
+		<div class="custom-modal-box space-y-5">
+			<div class="flex items-center justify-between pb-3 border-b border-border/40">
+				<h3 class="text-xl font-display" id="slotModalTitle">Select Broker for Comparison Slot</h3>
+				<button onclick="closeSlotModal()" data-no-popup="true" class="text-gray-400 hover:text-black font-bold text-lg px-2">✕</button>
+			</div>
+
+			<input type="text" id="slotModalSearch" oninput="renderSlotModalBrokers()" placeholder="Search broker by name or country..." class="form-input-field">
+
+			<div id="slotModalBrokersList" class="space-y-2 max-h-[55vh] overflow-y-auto pr-1">
+				<!-- Dynamically filled -->
+			</div>
+		</div>
+	</div>
+
+	<!-- BROKER DETAIL MODAL -->
+	<div id="brokerDetailModalBackdrop" class="custom-modal-backdrop" onclick="if(event.target===this) closeBrokerDetailModal()">
+		<div class="custom-modal-box space-y-5 max-w-2xl" id="brokerDetailContent">
+			<!-- Rendered dynamically -->
+		</div>
+	</div>
+
+	<!-- BLOG ARTICLE MODAL -->
+	<div id="blogModalBackdrop" class="custom-modal-backdrop" onclick="if(event.target===this) closeBlogModal()">
+		<div class="custom-modal-box space-y-5 max-w-2xl" id="blogModalContent">
+			<!-- Rendered dynamically -->
+		</div>
+	</div>
+
+	<!-- TOAST ALERTS CONTAINER -->
+	<div id="toastContainer" class="toast-container"></div>
+
+	<!-- JAVASCRIPT LOGIC FOR BACKEND API & INTERACTIVE UI -->
+	<script>
+		// Configurable API base endpoint (Support Render deployment & local fallback)
+		const PRIMARY_API_URL = 'https://broker-api-hraf.onrender.com/api';
+		const LOCAL_API_URL = 'http://localhost:5000/api';
+		let API_BASE_URL = PRIMARY_API_URL;
+
+		// Global State
+		let allBrokersList = [];
+		let selectedBrokers = [];
+		let activeSlotIndex = null;
+		let popularComparisonsData = [];
+		let showAllPopularMatchups = false;
+		let dynamicMatrixData = null;
+
+		// Directory Filter State
+		let dirPage = 1;
+		let dirTotalPages = 1;
+		let dirType = 'all';
+		let dirTag = '';
+		let dirSearch = '';
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			loadSavedComparisonState();
+			await determineWorkingApiUrl();
+			initPageData();
+
+			// Hero search listener
+			document.getElementById('heroSearchBtn').addEventListener('click', () => {
+				const val = document.getElementById('heroSearchInput').value.trim();
+				dirSearch = val;
+				dirPage = 1;
+				fetchDirectoryBrokers();
+				document.getElementById('brokers-directory').scrollIntoView({ behavior: 'smooth' });
+			});
+
+			document.getElementById('heroSearchInput').addEventListener('keydown', (e) => {
+				if (e.key === 'Enter') {
+					e.preventDefault();
+					document.getElementById('heroSearchBtn').click();
+				}
+			});
+
+			// Sort listener
+			document.getElementById('sortSelect').addEventListener('change', () => {
+				dirPage = 1;
+				fetchDirectoryBrokers();
+			});
+
+			// Forms
+			document.getElementById('contactForm').addEventListener('submit', handleContactSubmit);
+			document.getElementById('newsletterForm').addEventListener('submit', handleNewsletterSubmit);
+		});
+
+		async function determineWorkingApiUrl() {
+			try {
+				const res = await fetch(`${PRIMARY_API_URL}/brokers?limit=1`, { method: 'GET' });
+				if (res.ok) {
+					API_BASE_URL = PRIMARY_API_URL;
+					return;
+				}
+			} catch (e) {}
+			API_BASE_URL = LOCAL_API_URL;
+		}
+
+		function showToast(msg, type = 'success') {
+			const container = document.getElementById('toastContainer');
+			const toast = document.createElement('div');
+			toast.className = `toast-message toast-${type}`;
+			toast.textContent = msg;
+			container.appendChild(toast);
+			setTimeout(() => toast.remove(), 4000);
+		}
+
+		function loadSavedComparisonState() {
+			try {
+				const saved = localStorage.getItem('kenvora_compare_brokers');
+				if (saved) {
+					selectedBrokers = JSON.parse(saved);
+				}
+			} catch (e) {}
+			updateCompareCounterBadge();
+		}
+
+		function saveComparisonState() {
+			try {
+				localStorage.setItem('kenvora_compare_brokers', JSON.stringify(selectedBrokers));
+			} catch (e) {}
+			updateCompareCounterBadge();
+		}
+
+		function updateCompareCounterBadge() {
+			document.getElementById('compareCountBadge').textContent = selectedBrokers.length;
+		}
+
+		async function initPageData() {
+			await fetchAllBrokersList();
+			fetchPopularComparisons();
+			fetchDirectoryBrokers();
+			fetchBlogs();
+			fetchTestimonials();
+			fetchFAQs();
+			renderSlotCards();
+			if (selectedBrokers.length >= 1) {
+				fetchComparisonMatrix();
+			}
+		}
+
+		async function fetchAllBrokersList() {
+			try {
+				const res = await fetch(`${API_BASE_URL}/brokers?limit=100`);
+				const json = await res.json();
+				if (json.success) {
+					allBrokersList = json.data || [];
+				}
+			} catch (err) {
+				console.error('Error fetching all brokers:', err);
+			}
+		}
+
+		// --- POPULAR COMPARISONS ---
+		async function fetchPopularComparisons() {
+			const container = document.getElementById('popularMatchupsContainer');
+			try {
+				const res = await fetch(`${API_BASE_URL}/popular-comparisons`);
+				const json = await res.json();
+				if (json.success && json.data && json.data.length > 0) {
+					popularComparisonsData = json.data;
+					renderPopularMatchupsGrid();
+				} else {
+					container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs col-span-2">No popular matchups found.</div>';
+				}
+			} catch (err) {
+				container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs col-span-2">Loading matchups...</div>';
+			}
+		}
+
+		function renderPopularMatchupsGrid() {
+			const container = document.getElementById('popularMatchupsContainer');
+			const displayList = showAllPopularMatchups ? popularComparisonsData : popularComparisonsData.slice(0, 4);
+
+			document.getElementById('toggleMatchupsBtnText').textContent = showAllPopularMatchups ? 'Show Less Matchups' : `View All (${popularComparisonsData.length})`;
+
+			container.innerHTML = displayList.map(item => {
+				const brokers = item.brokers || [];
+				const b1 = brokers[0] || {};
+				const b2 = brokers[1] || {};
+
+				return `
+					<div class="kenvora-card p-5 flex flex-col justify-between space-y-4">
+						<div class="flex items-center justify-between">
+							<span class="px-2.5 py-0.5 rounded-full bg-gold/10 text-gold text-[9px] font-extrabold uppercase border border-gold/30 tracking-wider">
+								${item.category || 'Matchup'}
+							</span>
+							<span class="text-[11px] text-muted-foreground font-semibold">Head-to-Head</span>
+						</div>
+
+						<div class="matchup-box-showcase">
+							<div class="matchup-broker-slot">
+								<img src="${b1.logo || ''}" alt="${b1.name || ''}" class="broker-logo-md" />
+								<div class="min-w-0 flex-1">
+									<span class="font-extrabold text-foreground text-xs block truncate">${b1.name || 'Broker 1'}</span>
+									<span class="text-[10px] text-amber-700 font-extrabold block">★ ${b1.overallRating || '4.8'}</span>
+								</div>
+							</div>
+
+							<div class="matchup-vs-badge"><span style="color:#fff !important;">VS</span></div>
+
+							<div class="matchup-broker-slot">
+								<img src="${b2.logo || ''}" alt="${b2.name || ''}" class="broker-logo-md" />
+								<div class="min-w-0 flex-1">
+									<span class="font-extrabold text-foreground text-xs block truncate">${b2.name || 'Broker 2'}</span>
+									<span class="text-[10px] text-amber-700 font-extrabold block">★ ${b2.overallRating || '4.8'}</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="flex items-center justify-between gap-3 pt-1">
+							<p class="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed flex-1">${item.description || ''}</p>
+							<button onclick="loadPopularMatchup('${item._id}')" data-no-popup="true" class="px-4 py-2.5 rounded-full bg-gradient-to-br from-gold-light to-gold-dark text-white text-[11px] font-bold hover:opacity-90 transition whitespace-nowrap shadow-xs flex-shrink-0">
+								<span style="color:#fff !important;">Compare Now</span>
+							</button>
+						</div>
+					</div>
+				`;
+			}).join('');
+		}
+
+		function togglePopularMatchupsLimit() {
+			showAllPopularMatchups = !showAllPopularMatchups;
+			renderPopularMatchupsGrid();
+		}
+
+		function loadPopularMatchup(matchupId) {
+			const item = popularComparisonsData.find(m => m._id === matchupId);
+			if (item && item.brokers) {
+				selectedBrokers = [...item.brokers];
+				saveComparisonState();
+				renderSlotCards();
+				fetchComparisonMatrix();
+				document.getElementById('comparison-engine').scrollIntoView({ behavior: 'smooth' });
+				showToast(`Loaded ${item.brokers.map(b => b.name).join(' vs ')} comparison matrix!`);
+			}
+		}
+
+		// --- COMPARISON ENGINE & MATRIX ---
+		function renderSlotCards() {
+			const container = document.getElementById('comparisonSlotCards');
+			let html = '';
+			for (let i = 0; i < 3; i++) {
+				const b = selectedBrokers[i];
+				if (b) {
+					html += `
+						<div class="kenvora-card p-4 flex items-center justify-between shadow-xs">
+							<div class="flex items-center gap-3">
+								<img src="${b.logo}" alt="${b.name}" class="broker-logo-md" />
+								<div>
+									<span class="text-[9px] font-extrabold text-gold uppercase tracking-wider block">Slot ${i + 1}</span>
+									<h4 class="font-extrabold text-foreground text-xs">${b.name}</h4>
+									<span class="text-[9.5px] text-muted-foreground uppercase font-semibold">${b.brokerType} Broker</span>
+								</div>
+							</div>
+							<button onclick="removeFromCompareSlot('${b._id}')" data-no-popup="true" class="p-2 text-gray-500 hover:text-red-600 font-bold text-xs bg-white rounded-lg border border-gray-200 shadow-xs transition">✕</button>
+						</div>
+					`;
+				} else {
+					html += `
+						<button onclick="openSlotModal(${i})" data-no-popup="true" class="kenvora-slot-picker">
+							<div class="slot-picker-icon-box">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-sm"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+							</div>
+							<span class="text-[11px] font-extrabold uppercase tracking-wider text-gold">+ Select Broker ${i + 1}</span>
+						</button>
+					`;
+				}
+			}
+			container.innerHTML = html;
+		}
+
+		function addToCompare(broker) {
+			if (selectedBrokers.some(b => b._id === broker._id)) {
+				showToast(`${broker.name} is already in comparison!`, 'error');
+				return;
+			}
+			if (selectedBrokers.length >= 3) {
+				showToast('You can compare a maximum of 3 brokers at a time.', 'error');
+				return;
+			}
+			selectedBrokers.push(broker);
+			saveComparisonState();
+			renderSlotCards();
+			fetchComparisonMatrix();
+			renderBrokersDirectoryGrid();
+			showToast(`Added ${broker.name} to comparison!`);
+		}
+
+		function removeFromCompareSlot(brokerId) {
+			selectedBrokers = selectedBrokers.filter(b => b._id !== brokerId);
+			saveComparisonState();
+			renderSlotCards();
+			if (selectedBrokers.length >= 1) {
+				fetchComparisonMatrix();
+			} else {
+				document.getElementById('comparisonMatrixContainer').innerHTML = `
+					<div class="p-12 text-center text-muted-foreground space-y-3">
+						<div class="w-12 h-12 rounded-full bg-gold/10 text-gold mx-auto flex items-center justify-center border border-gold/30">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+						</div>
+						<h3 class="font-bold text-foreground">Select at least 2 brokers to compare</h3>
+						<p class="text-xs max-w-md mx-auto leading-relaxed">Choose brokers above or click "+ Compare" on any broker card in the directory below to load side-by-side specs and winner badges.</p>
+					</div>
+				`;
+			}
+			renderBrokersDirectoryGrid();
+		}
+
+		function clearComparisonState() {
+			selectedBrokers = [];
+			saveComparisonState();
+			renderSlotCards();
+			document.getElementById('comparisonMatrixContainer').innerHTML = `
+				<div class="p-12 text-center text-muted-foreground space-y-3">
+					<div class="w-12 h-12 rounded-full bg-gold/10 text-gold mx-auto flex items-center justify-center border border-gold/30">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-md"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+					</div>
+					<h3 class="font-bold text-foreground">Select at least 2 brokers to compare</h3>
+					<p class="text-xs max-w-md mx-auto leading-relaxed">Choose brokers above or click "+ Compare" on any broker card in the directory below to load side-by-side specs and winner badges.</p>
+				</div>
+			`;
+			renderBrokersDirectoryGrid();
+			showToast('Cleared comparison list');
+		}
+
+		async function fetchComparisonMatrix() {
+			if (selectedBrokers.length < 1) return;
+			const container = document.getElementById('comparisonMatrixContainer');
+			try {
+				const ids = selectedBrokers.map(b => b._id);
+				const res = await fetch(`${API_BASE_URL}/compare`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ brokerIds: ids })
+				});
+				const json = await res.json();
+				if (json.success && json.data) {
+					dynamicMatrixData = json.data;
+					renderComparisonMatrixTable(dynamicMatrixData);
+				}
+			} catch (err) {
+				container.innerHTML = '<div class="p-8 text-center text-red-500 text-xs">Failed to fetch comparison matrix.</div>';
+			}
+		}
+
+		function renderComparisonMatrixTable(data) {
+			const container = document.getElementById('comparisonMatrixContainer');
+			const brokers = data.brokers || [];
+			const highlights = data.highlights || {};
+			const dynamicFeatures = data.dynamicFeatures || [];
+
+			if (brokers.length === 0) return;
+
+			function renderBadges(bId) {
+				const badges = [];
+				if (highlights.bestOverall === bId) badges.push({ text: 'Best Overall', cls: 'bg-amber-500/10 text-amber-800 border-amber-500/30' });
+				if (highlights.bestValue === bId) badges.push({ text: 'Best Value', cls: 'bg-emerald/10 text-emerald border-emerald/30' });
+				if (highlights.lowestCharges === bId) badges.push({ text: 'Lowest Charges', cls: 'bg-cyan-500/10 text-cyan-800 border-cyan-500/30' });
+				if (highlights.highestRating === bId) badges.push({ text: 'Highest Rating', cls: 'bg-purple-500/10 text-purple-800 border-purple-500/30' });
+				if (highlights.fastestExecution === bId) badges.push({ text: 'Fastest Speed', cls: 'bg-sky-500/10 text-sky-800 border-sky-500/30' });
+
+				return badges.map(b => `<span class="px-2 py-0.5 rounded text-[8.5px] font-extrabold uppercase border ${b.cls}">🏆 ${b.text}</span>`).join(' ');
+			}
+
+			function renderBool(val) {
+				return val ? '<span class="text-emerald font-bold text-xs">✓ Yes</span>' : '<span class="text-gray-400 text-xs">✕ No</span>';
+			}
+
+			const sections = [
+				{
+					title: '1. Basic Information',
+					rows: [
+						{ label: 'Broker Name', render: b => `<span class="font-extrabold text-foreground text-xs">${b.name}</span>` },
+						{ label: 'Broker Type', render: b => `<span class="uppercase text-[10.5px] font-bold text-gold">${b.brokerType} Broker</span>` },
+						{ label: 'Founded Year', render: b => b.founded || 'N/A' },
+						{ label: 'Head Office', render: b => b.headOffice || 'N/A' },
+						{ label: 'Country', render: b => b.country || 'N/A' },
+						{ label: 'Regulations', render: b => `<span class="font-bold text-emerald text-[11px]">${(b.regulation || []).join(', ') || 'Regulated'}</span>` },
+						{ label: 'Trust Score', render: b => `<span class="font-extrabold text-emerald">${b.trustScore || '80'} / 100</span>` },
+						{ label: 'Overall Rating', render: b => `<span class="font-extrabold text-amber-700">★ ${b.overallRating} / 5</span>` }
+					]
+				},
+				{
+					title: '2. Account & Deposit Specs',
+					rows: [
+						{ label: 'Minimum Deposit', render: b => `<span class="font-extrabold text-foreground">${b.minDepositCurrency || '$'}${b.minDeposit}</span>` },
+						{ label: 'Maximum Leverage', render: b => `<span class="font-bold text-gold">${b.maxLeverage || '1:500'}</span>` },
+						{ label: 'Account Types', render: b => (b.accountTypes || []).join(', ') || 'Standard' },
+						{ label: 'Deposit Methods', render: b => (b.depositMethods || []).join(', ') || 'N/A' },
+						{ label: 'Withdrawal Methods', render: b => (b.withdrawalMethods || []).join(', ') || 'N/A' }
+					]
+				},
+				{
+					title: '3. Trading Platforms & Apps',
+					rows: [
+						{ label: 'MetaTrader 4 (MT4)', render: b => renderBool(b.tradingPlatforms?.mt4) },
+						{ label: 'MetaTrader 5 (MT5)', render: b => renderBool(b.tradingPlatforms?.mt5) },
+						{ label: 'TradingView Charts', render: b => renderBool(b.tradingPlatforms?.tradingView) },
+						{ label: 'Web Platform', render: b => renderBool(b.tradingPlatforms?.webPlatform) },
+						{ label: 'Mobile Trading App', render: b => renderBool(b.tradingPlatforms?.mobileApp) }
+					]
+				},
+				{
+					title: '4. Tradable Products',
+					rows: [
+						{ label: 'Forex Pairs', render: b => renderBool(b.products?.forex) },
+						{ label: 'Stocks & Equities', render: b => renderBool(b.products?.stocks) },
+						{ label: 'Indices', render: b => renderBool(b.products?.indices) },
+						{ label: 'Cryptocurrency', render: b => renderBool(b.products?.crypto) },
+						{ label: 'Commodities (Gold/Oil)', render: b => renderBool(b.products?.commodity) },
+						{ label: 'Options & Futures', render: b => renderBool(b.products?.options || b.products?.futures) }
+					]
+				},
+				{
+					title: '5. Brokerage & Fee Schedule',
+					rows: [
+						{ label: 'Account Opening Fee', render: b => b.brokerage?.accountOpeningCharges || 'Free' },
+						{ label: 'AMC (Annual Maintenance)', render: b => b.brokerage?.amc || 'Free' },
+						{ label: 'Equity Delivery', render: b => b.brokerage?.equityDelivery || 'N/A' },
+						{ label: 'Intraday Trading', render: b => b.brokerage?.intraday || 'N/A' },
+						{ label: 'Average Spread', render: b => `<span class="font-bold text-emerald">${b.brokerage?.spread || 'From 0.0 pips'}</span>` }
+					]
+				},
+				{
+					title: '6. Execution & Advanced Tools',
+					rows: [
+						{ label: 'Execution Speed', render: b => `<span class="font-bold text-gold">${b.executionSpeed || '< 30ms'}</span>` },
+						{ label: 'Islamic Swap Free', render: b => renderBool(b.swapFree) },
+						{ label: 'Negative Balance Protection', render: b => renderBool(b.negativeBalanceProtection) },
+						{ label: 'Copy Trading Support', render: b => renderBool(b.copyTrading) }
+					]
+				}
+			];
+
+			let html = `
+				<div class="overflow-x-auto">
+					<table class="w-full text-left border-collapse min-w-[650px] matrix-table text-[11px]">
+						<thead>
+							<tr>
+								<th class="p-4 w-1/4">
+									<span class="text-[9px] font-extrabold text-muted-foreground uppercase tracking-widest block">Comparing Matrix</span>
+									<span class="text-sm font-extrabold text-foreground">${brokers.length} Selected Brokers</span>
+								</th>
+								${brokers.map(b => `
+									<th class="p-4 text-center border-l border-border/40">
+										<div class="flex flex-col items-center gap-2">
+											<img src="${b.logo}" alt="${b.name}" class="broker-logo-md" />
+											<h3 class="font-extrabold text-foreground text-xs">${b.name}</h3>
+											<div class="flex flex-wrap justify-center gap-1">${renderBadges(b._id)}</div>
+											<a href="${b.website}" target="_blank" rel="noreferrer" class="mt-1 px-4 py-1.5 rounded-full bg-gradient-to-br from-gold-light to-gold-dark text-white text-[11px] font-bold hover:opacity-90 transition shadow-xs"><span style="color:#fff !important;">Open Account ↗</span></a>
+										</div>
+									</th>
+								`).join('')}
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-border/40 text-[11px]">
+			`;
+
+			sections.forEach(sec => {
+				html += `
+					<tr class="matrix-section-header">
+						<td colSpan="${brokers.length + 1}" class="py-2.5 px-4 uppercase tracking-wider text-[10px]">${sec.title}</td>
+					</tr>
+				`;
+				sec.rows.forEach(r => {
+					html += `
+						<tr class="hover:bg-gray-50/60 transition">
+							<td class="py-2.5 px-4 font-bold text-muted-foreground bg-gray-50/40">${r.label}</td>
+							${brokers.map(b => `<td class="py-2.5 px-4 text-center border-l border-border/30">${r.render(b)}</td>`).join('')}
+						</tr>
+					`;
+				});
+			});
+
+			// Admin Custom Features
+			if (dynamicFeatures.length > 0) {
+				html += `
+					<tr class="matrix-section-header">
+						<td colSpan="${brokers.length + 1}" class="py-2.5 px-4 uppercase tracking-wider text-[10px]">7. Custom Dynamic Fields</td>
+					</tr>
+				`;
+				dynamicFeatures.forEach(feat => {
+					html += `
+						<tr class="hover:bg-gray-50/60 transition">
+							<td class="py-2.5 px-4 font-bold text-muted-foreground bg-gray-50/40">${feat.label}</td>
+							${brokers.map(b => {
+								const valObj = b.customFeatures?.[feat.key];
+								const val = valObj?.value;
+								return `<td class="py-2.5 px-4 text-center border-l border-border/30">${feat.type === 'boolean' ? renderBool(val) : (val ?? 'N/A')}</td>`;
+							}).join('')}
+						</tr>
+					`;
+				});
+			}
+
+			// Verdict & Pros/Cons
+			html += `
+				<tr class="matrix-section-header">
+					<td colSpan="${brokers.length + 1}" class="py-2.5 px-4 uppercase tracking-wider text-[10px]">8. Final Verdict & Summary</td>
+				</tr>
+				<tr class="hover:bg-gray-50/60">
+					<td class="py-2.5 px-4 font-bold text-muted-foreground bg-gray-50/40">Key Advantages</td>
+					${brokers.map(b => `
+						<td class="py-2.5 px-4 text-left border-l border-border/30">
+							<ul class="space-y-1">
+								${(b.pros || []).slice(0, 3).map(p => `<li class="flex items-start gap-1 text-[10px]"><span class="text-emerald font-bold">✓</span><span>${p}</span></li>`).join('')}
+							</ul>
+						</td>
+					`).join('')}
+				</tr>
+				<tr class="hover:bg-gray-50/60">
+					<td class="py-2.5 px-4 font-bold text-muted-foreground bg-gray-50/40">Final Verdict</td>
+					${brokers.map(b => `<td class="py-2.5 px-4 text-left border-l border-border/30 text-[10px] italic leading-relaxed">"${b.finalVerdict || 'Recommended for traders.'}"</td>`).join('')}
+				</tr>
+			`;
+
+			html += `</tbody></table></div>`;
+			container.innerHTML = html;
+		}
+
+		// --- SLOT SELECTION MODAL ---
+		function openSlotModal(slotIdx) {
+			activeSlotIndex = slotIdx;
+			document.getElementById('slotModalTitle').textContent = `Select Broker for Slot ${slotIdx + 1}`;
+			document.getElementById('slotModalSearch').value = '';
+			document.getElementById('slotModalBackdrop').classList.add('is-open');
+			renderSlotModalBrokers();
+		}
+
+		function closeSlotModal() {
+			document.getElementById('slotModalBackdrop').classList.remove('is-open');
+			activeSlotIndex = null;
+		}
+
+		function renderSlotModalBrokers() {
+			const query = (document.getElementById('slotModalSearch').value || '').toLowerCase().trim();
+			const listContainer = document.getElementById('slotModalBrokersList');
+
+			const filtered = allBrokersList.filter(b => b.name.toLowerCase().includes(query) || (b.country || '').toLowerCase().includes(query));
+
+			listContainer.innerHTML = filtered.map(b => {
+				const isAlreadySelected = selectedBrokers.some(sb => sb._id === b._id);
+				return `
+					<button ${isAlreadySelected ? 'disabled' : ''} onclick="chooseBrokerForSlot('${b._id}')" data-no-popup="true" class="w-full text-left p-3 bg-white hover:bg-gold/10 disabled:opacity-40 border border-border/40 rounded-xl flex items-center justify-between transition shadow-xs">
+						<div class="flex items-center gap-3">
+							<img src="${b.logo}" alt="${b.name}" class="broker-logo-sm" />
+							<div>
+								<h5 class="font-extrabold text-foreground text-xs">${b.name}</h5>
+								<span class="text-[9.5px] text-muted-foreground uppercase font-semibold">${b.brokerType} Broker • ${b.country}</span>
+							</div>
+						</div>
+						<span class="text-[11px] font-bold text-amber-700">★ ${b.overallRating}</span>
+					</button>
+				`;
+			}).join('');
+		}
+
+		function chooseBrokerForSlot(brokerId) {
+			const broker = allBrokersList.find(b => b._id === brokerId);
+			if (broker && activeSlotIndex !== null) {
+				selectedBrokers[activeSlotIndex] = broker;
+				saveComparisonState();
+				renderSlotCards();
+				fetchComparisonMatrix();
+				renderBrokersDirectoryGrid();
+				closeSlotModal();
+				showToast(`Added ${broker.name} to Slot ${activeSlotIndex + 1}!`);
+			}
+		}
+
+		// --- VERIFIED BROKERS DIRECTORY ---
+		function setFilterType(type) {
+			dirType = type;
+			document.querySelectorAll('input[name="typeRadio"]').forEach(r => r.checked = (r.value === type));
+			handleFilterChange();
+			document.getElementById('brokers-directory').scrollIntoView({ behavior: 'smooth' });
+		}
+
+		function setFilterTag(tag) {
+			dirTag = tag;
+			handleFilterChange();
+			document.getElementById('brokers-directory').scrollIntoView({ behavior: 'smooth' });
+		}
+
+		function handleFilterChange() {
+			dirPage = 1;
+			const rChecked = document.querySelector('input[name="typeRadio"]:checked');
+			if (rChecked) dirType = rChecked.value;
+			fetchDirectoryBrokers();
+		}
+
+		function resetDirectoryFilters() {
+			dirType = 'all';
+			dirTag = '';
+			dirSearch = '';
+			dirPage = 1;
+			document.getElementById('chkMt4').checked = false;
+			document.getElementById('chkMt5').checked = false;
+			document.getElementById('chkTradingView').checked = false;
+			document.querySelectorAll('input[name="typeRadio"]').forEach(r => r.checked = (r.value === 'all'));
+			document.getElementById('heroSearchInput').value = '';
+			document.getElementById('sortSelect').value = 'rating_desc';
+			fetchDirectoryBrokers();
+		}
+
+		async function fetchDirectoryBrokers() {
+			const grid = document.getElementById('brokersGridContainer');
+			grid.innerHTML = '<div class="p-8 text-center text-muted-foreground text-xs col-span-3">Loading brokers directory...</div>';
+
+			try {
+				const mt4 = document.getElementById('chkMt4').checked;
+				const mt5 = document.getElementById('chkMt5').checked;
+				const tradingView = document.getElementById('chkTradingView').checked;
+				const sort = document.getElementById('sortSelect').value;
+
+				const params = new URLSearchParams();
+				if (dirType !== 'all') params.append('type', dirType);
+				if (dirTag) params.append('tag', dirTag);
+				if (dirSearch) params.append('search', dirSearch);
+				if (mt4) params.append('mt4', 'true');
+				if (mt5) params.append('mt5', 'true');
+				if (tradingView) params.append('tradingView', 'true');
+				params.append('sort', sort);
+				params.append('page', dirPage);
+				params.append('limit', 9);
+
+				const res = await fetch(`${API_BASE_URL}/brokers?${params.toString()}`);
+				const json = await res.json();
+				if (json.success) {
+					const brokers = json.data || [];
+					const meta = json.meta || {};
+					dirTotalPages = meta.pages || 1;
+
+					document.getElementById('directoryCountText').textContent = `Showing ${meta.total || brokers.length} verified broker profiles`;
+					document.getElementById('paginationText').textContent = `Page ${dirPage} of ${dirTotalPages}`;
+					document.getElementById('prevPageBtn').disabled = dirPage <= 1;
+					document.getElementById('nextPageBtn').disabled = dirPage >= dirTotalPages;
+
+					renderBrokersDirectoryGrid(brokers);
+				}
+			} catch (err) {
+				grid.innerHTML = '<div class="p-8 text-center text-muted-foreground text-xs col-span-3">Loading directory...</div>';
+			}
+		}
+
+		function renderBrokersDirectoryGrid(brokers = null) {
+			if (!brokers) {
+				fetchDirectoryBrokers();
+				return;
+			}
+
+			const grid = document.getElementById('brokersGridContainer');
+			if (brokers.length === 0) {
+				grid.innerHTML = '<div class="p-8 text-center text-muted-foreground text-xs col-span-3 kenvora-card">No brokers match your filter criteria.</div>';
+				return;
+			}
+
+			grid.innerHTML = brokers.map(b => {
+				const isSelected = selectedBrokers.some(sb => sb._id === b._id);
+				return `
+					<div class="kenvora-card p-5 flex flex-col justify-between space-y-3">
+						<div class="flex items-center justify-between">
+							<span class="px-2.5 py-0.5 rounded-full text-[8.5px] font-extrabold uppercase tracking-wider ${b.brokerType === 'stock' ? 'bg-emerald/10 text-emerald border border-emerald/30' : 'bg-purple-500/10 text-purple border border-purple-500/30'}">
+								${b.brokerType} BROKER
+							</span>
+							<span class="bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-full text-amber text-[10.5px] font-bold">
+								★ ${b.overallRating}
+							</span>
+						</div>
+
+						<div class="flex items-start gap-3">
+							<img src="${b.logo}" alt="${b.name}" class="broker-logo-md" />
+							<div class="min-w-0 flex-1">
+								<h4 onclick="openBrokerDetailModal('${b.slug}')" class="font-extrabold text-foreground text-xs cursor-pointer hover:text-gold transition truncate">${b.name}</h4>
+								<p class="text-[9.5px] text-muted-foreground mt-0.5 truncate">${(b.regulation || []).join(', ') || 'Regulated'} • ${b.country || 'Global'}</p>
+							</div>
+						</div>
+
+						<div class="broker-metrics-grid">
+							<div>
+								<span class="block text-[8px] text-muted-foreground uppercase font-bold tracking-wider">Min Deposit</span>
+								<span class="font-bold text-foreground mt-0.5 block text-[10.5px]">${b.minDepositCurrency || '$'}${b.minDeposit}</span>
+							</div>
+							<div>
+								<span class="block text-[8px] text-muted-foreground uppercase font-bold tracking-wider">Max Leverage</span>
+								<span class="font-bold text-gold mt-0.5 block text-[10.5px]">${b.maxLeverage || '1:500'}</span>
+							</div>
+							<div>
+								<span class="block text-[8px] text-muted-foreground uppercase font-bold tracking-wider">Trust Score</span>
+								<span class="font-bold text-emerald mt-0.5 block text-[10.5px]">${b.trustScore || 80}/100</span>
+							</div>
+							<div>
+								<span class="block text-[8px] text-muted-foreground uppercase font-bold tracking-wider">Execution</span>
+								<span class="font-bold text-foreground mt-0.5 block text-[10.5px] truncate">${b.executionSpeed || '< 30ms'}</span>
+							</div>
+						</div>
+
+						${(b.pros && b.pros.length > 0) ? `
+							<ul class="space-y-0.5 text-[9.5px] text-muted-foreground">
+								${b.pros.slice(0, 2).map(p => `<li class="flex items-center gap-1"><span class="text-emerald font-bold">✓</span><span class="truncate">${p}</span></li>`).join('')}
+							</ul>
+						` : ''}
+
+						<div class="flex items-center gap-2 pt-2 border-t border-border/40">
+							<button onclick="toggleCompareInDirectory('${b._id}')" data-no-popup="true" class="btn-card-action flex-1 transition ${isSelected ? 'bg-gold/20 text-gold border border-gold/40' : 'bg-white hover:bg-gray-100 border border-gray-200 text-foreground'}">
+								<span>${isSelected ? '✓ Added' : '+ Compare'}</span>
+							</button>
+
+							<button onclick="openBrokerDetailModal('${b.slug}')" data-no-popup="true" class="btn-card-action flex-1 bg-gradient-to-br from-gold-light to-gold-dark text-white hover:opacity-90 shadow-xs">
+								<span style="color:#fff !important;">Details</span>
+							</button>
+						</div>
+					</div>
+				`;
+			}).join('');
+		}
+
+		function toggleCompareInDirectory(brokerId) {
+			const b = allBrokersList.find(item => item._id === brokerId);
+			if (!b) return;
+			const index = selectedBrokers.findIndex(sb => sb._id === brokerId);
+			if (index >= 0) {
+				removeFromCompareSlot(brokerId);
+			} else {
+				addToCompare(b);
+			}
+		}
+
+		function changePage(delta) {
+			const newPage = dirPage + delta;
+			if (newPage >= 1 && newPage <= dirTotalPages) {
+				dirPage = newPage;
+				fetchDirectoryBrokers();
+			}
+		}
+
+		// --- BROKER DETAIL MODAL ---
+		async function openBrokerDetailModal(slug) {
+			const modalBackdrop = document.getElementById('brokerDetailModalBackdrop');
+			const contentBox = document.getElementById('brokerDetailContent');
+
+			contentBox.innerHTML = '<div class="p-10 text-center text-muted-foreground text-xs">Loading broker profile...</div>';
+			modalBackdrop.classList.add('is-open');
+
+			try {
+				const res = await fetch(`${API_BASE_URL}/brokers/${slug}`);
+				const json = await res.json();
+				if (json.success && json.data) {
+					const { broker, customFeatures = [] } = json.data;
+					contentBox.innerHTML = `
+						<div class="flex items-center justify-between pb-3 border-b border-border/40">
+							<div class="flex items-center gap-3">
+								<img src="${broker.logo}" alt="${broker.name}" class="broker-logo-md" />
+								<div>
+									<h3 class="text-xl font-display">${broker.name}</h3>
+									<span class="text-[11px] font-bold text-gold uppercase">${broker.brokerType} Broker • Est. ${broker.founded || 'N/A'}</span>
+								</div>
+							</div>
+							<button onclick="closeBrokerDetailModal()" data-no-popup="true" class="text-gray-400 hover:text-black font-bold text-lg px-2">✕</button>
+						</div>
+
+						<!-- Score Grid -->
+						<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+							<div class="bg-white p-3 rounded-xl border border-gray-200 text-center shadow-xs">
+								<span class="text-[9px] text-muted-foreground uppercase font-bold block">Overall Rating</span>
+								<span class="text-base font-extrabold text-amber block mt-0.5">★ ${broker.overallRating} / 5</span>
+							</div>
+							<div class="bg-white p-3 rounded-xl border border-gray-200 text-center shadow-xs">
+								<span class="text-[9px] text-muted-foreground uppercase font-bold block">Trust Score</span>
+								<span class="text-base font-extrabold text-emerald block mt-0.5">${broker.trustScore} / 100</span>
+							</div>
+							<div class="bg-white p-3 rounded-xl border border-gray-200 text-center shadow-xs">
+								<span class="text-[9px] text-muted-foreground uppercase font-bold block">Min Deposit</span>
+								<span class="text-base font-extrabold text-foreground block mt-0.5">${broker.minDepositCurrency || '$'}${broker.minDeposit}</span>
+							</div>
+							<div class="bg-white p-3 rounded-xl border border-gray-200 text-center shadow-xs">
+								<span class="text-[9px] text-muted-foreground uppercase font-bold block">Max Leverage</span>
+								<span class="text-base font-extrabold text-gold block mt-0.5">${broker.maxLeverage}</span>
+							</div>
+						</div>
+
+						<!-- Fee Schedule Table -->
+						<div class="bg-white p-4 rounded-2xl border border-gray-200 space-y-3 shadow-xs">
+							<h4 class="font-extrabold text-foreground text-xs">Brokerage & Fee Schedule</h4>
+							<div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-[11px]">
+								<div><span class="text-muted-foreground block text-[9px] uppercase font-semibold">Account Opening</span><span class="font-bold text-foreground mt-0.5 block">${broker.brokerage?.accountOpeningCharges || 'Free'}</span></div>
+								<div><span class="text-muted-foreground block text-[9px] uppercase font-semibold">AMC Charges</span><span class="font-bold text-foreground mt-0.5 block">${broker.brokerage?.amc || 'Free'}</span></div>
+								<div><span class="text-muted-foreground block text-[9px] uppercase font-semibold">Average Spread</span><span class="font-bold text-emerald mt-0.5 block">${broker.brokerage?.spread || 'From 0.0 pips'}</span></div>
+								<div><span class="text-muted-foreground block text-[9px] uppercase font-semibold">Equity Delivery</span><span class="font-bold text-foreground mt-0.5 block">${broker.brokerage?.equityDelivery || 'N/A'}</span></div>
+								<div><span class="text-muted-foreground block text-[9px] uppercase font-semibold">Intraday Brokerage</span><span class="font-bold text-foreground mt-0.5 block">${broker.brokerage?.intraday || 'N/A'}</span></div>
+								<div><span class="text-muted-foreground block text-[9px] uppercase font-semibold">Options Charges</span><span class="font-bold text-foreground mt-0.5 block">${broker.brokerage?.optionsCharges || 'N/A'}</span></div>
+							</div>
+						</div>
+
+						<!-- Pros & Cons -->
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+							<div class="bg-emerald/10 p-4 rounded-xl border border-emerald/30 space-y-1.5">
+								<h5 class="font-extrabold text-emerald uppercase tracking-wider text-[10px]">Pros & Advantages</h5>
+								<ul class="space-y-1 text-muted-foreground">
+									${(broker.pros || []).map(p => `<li>✓ ${p}</li>`).join('')}
+								</ul>
+							</div>
+							<div class="bg-rose-500/10 p-4 rounded-xl border border-rose-500/30 space-y-1.5">
+								<h5 class="font-extrabold text-rose uppercase tracking-wider text-[10px]">Cons & Drawbacks</h5>
+								<ul class="space-y-1 text-muted-foreground">
+									${(broker.cons || []).map(c => `<li>✕ ${c}</li>`).join('')}
+								</ul>
+							</div>
+						</div>
+
+						<!-- Final Verdict -->
+						<div class="p-4 bg-gold/10 rounded-xl border border-gold/30 space-y-1">
+							<span class="text-[9px] font-extrabold text-gold uppercase tracking-wider block">Expert Verdict</span>
+							<p class="text-[11px] text-foreground italic leading-relaxed">"${broker.finalVerdict || 'Highly recommended broker.'}"</p>
+						</div>
+
+						<div class="pt-2 flex justify-end gap-2.5">
+							<button onclick="closeBrokerDetailModal()" data-no-popup="true" class="px-5 py-2 rounded-full border border-gray-300 text-xs font-bold">Close</button>
+							<a href="${broker.website}" target="_blank" rel="noreferrer" class="px-6 py-2 rounded-full bg-gradient-to-br from-gold-light to-gold-dark text-white text-xs font-bold hover:opacity-90 transition shadow-xs"><span style="color:#fff !important;">Visit Official Website ↗</span></a>
+						</div>
+					`;
+				}
+			} catch (err) {
+				contentBox.innerHTML = '<div class="p-8 text-center text-red-500 text-xs">Failed to load broker detail.</div>';
+			}
+		}
+
+		function closeBrokerDetailModal() {
+			document.getElementById('brokerDetailModalBackdrop').classList.remove('is-open');
+		}
+
+		// --- BLOGS ---
+		async function fetchBlogs() {
+			const container = document.getElementById('blogsContainer');
+			try {
+				const res = await fetch(`${API_BASE_URL}/blogs?limit=3`);
+				const json = await res.json();
+				if (json.success && json.data && json.data.length > 0) {
+					container.innerHTML = json.data.map(b => `
+						<div onclick="openBlogModal('${b.slug}')" class="kenvora-card overflow-hidden cursor-pointer flex flex-col justify-between" style="padding:0 !important;">
+							<img src="${b.image}" alt="${b.title}" class="w-full h-40 object-cover" />
+							<div class="p-5 space-y-2">
+								<span class="text-[9px] font-extrabold text-gold uppercase">${b.category || 'Guide'}</span>
+								<h3 class="font-extrabold text-foreground text-sm line-clamp-2">${b.title}</h3>
+								<p class="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">${b.summary || ''}</p>
+								<div class="pt-2 text-[9.5px] text-muted-foreground flex justify-between border-t border-border/40">
+									<span>${new Date(b.publishedAt || Date.now()).toLocaleDateString()}</span>
+									<span class="text-gold font-bold">Read Guide →</span>
+								</div>
+							</div>
+						</div>
+					`).join('');
+				} else {
+					container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs col-span-3">No trading guides published yet.</div>';
+				}
+			} catch (err) {
+				container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs col-span-3">Loading articles...</div>';
+			}
+		}
+
+		async function openBlogModal(slug) {
+			const modalBackdrop = document.getElementById('blogModalBackdrop');
+			const contentBox = document.getElementById('blogModalContent');
+
+			contentBox.innerHTML = '<div class="p-10 text-center text-muted-foreground text-xs">Loading article...</div>';
+			modalBackdrop.classList.add('is-open');
+
+			try {
+				const res = await fetch(`${API_BASE_URL}/blogs/${slug}`);
+				const json = await res.json();
+				if (json.success && json.data) {
+					const b = json.data;
+					contentBox.innerHTML = `
+						<div class="flex items-center justify-between pb-3 border-b border-border/40">
+							<span class="text-xs font-bold text-gold uppercase">${b.category}</span>
+							<button onclick="closeBlogModal()" data-no-popup="true" class="text-gray-400 hover:text-black font-bold text-lg px-2">✕</button>
+						</div>
+
+						<h2 class="text-xl font-display">${b.title}</h2>
+						<div class="text-[11px] text-muted-foreground flex gap-2.5 pb-2 border-b border-border/40">
+							<span>By ${b.author || 'Analyst'}</span>
+							<span>•</span>
+							<span>${new Date(b.publishedAt || Date.now()).toLocaleDateString()}</span>
+						</div>
+
+						<img src="${b.image}" alt="${b.title}" class="w-full h-56 object-cover rounded-xl border border-gray-200 shadow-xs" />
+
+						<div class="text-xs text-foreground leading-relaxed whitespace-pre-line bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
+							${b.content || b.summary}
+						</div>
+					`;
+				}
+			} catch (err) {
+				contentBox.innerHTML = '<div class="p-8 text-center text-red-500 text-xs">Failed to load article details.</div>';
+			}
+		}
+
+		function closeBlogModal() {
+			document.getElementById('blogModalBackdrop').classList.remove('is-open');
+		}
+
+		// --- TESTIMONIALS ---
+		async function fetchTestimonials() {
+			const container = document.getElementById('testimonialsContainer');
+			try {
+				const res = await fetch(`${API_BASE_URL}/testimonials`);
+				const json = await res.json();
+				if (json.success && json.data && json.data.length > 0) {
+					container.innerHTML = json.data.map(t => `
+						<div class="kenvora-card p-5 space-y-2.5">
+							<div class="text-amber text-xs font-bold">
+								${'★'.repeat(t.rating || 5)}
+							</div>
+							<p class="text-[11px] text-muted-foreground italic leading-relaxed">"${t.content}"</p>
+							<div class="pt-2 border-t border-border/40">
+								<span class="font-extrabold text-foreground text-xs block">${t.name}</span>
+								<span class="text-[9.5px] text-gold font-bold">${t.role || 'Trader'}</span>
+							</div>
+						</div>
+					`).join('');
+				} else {
+					container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs col-span-2">No community reviews loaded.</div>';
+				}
+			} catch (err) {
+				container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs col-span-2">Loading reviews...</div>';
+			}
+		}
+
+		// --- FAQS ---
+		async function fetchFAQs() {
+			const container = document.getElementById('faqsContainer');
+			try {
+				const res = await fetch(`${API_BASE_URL}/faqs`);
+				const json = await res.json();
+				if (json.success && json.data && json.data.length > 0) {
+					container.innerHTML = json.data.map((f, idx) => `
+						<div class="faq-card">
+							<button onclick="toggleFaq(${idx})" data-no-popup="true" class="faq-toggle-btn">
+								<span>${f.question}</span>
+								<div class="faq-icon-circle" id="faqIcon-${idx}">＋</div>
+							</button>
+							<div id="faqAnswer-${idx}" class="hidden faq-answer-body">
+								${f.answer}
+							</div>
+						</div>
+					`).join('');
+				} else {
+					container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs">No FAQs found.</div>';
+				}
+			} catch (err) {
+				container.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs">Loading FAQs...</div>';
+			}
+		}
+
+		function toggleFaq(idx) {
+			const ans = document.getElementById(`faqAnswer-${idx}`);
+			const icon = document.getElementById(`faqIcon-${idx}`);
+			if (ans.classList.contains('hidden')) {
+				ans.classList.remove('hidden');
+				icon.textContent = '－';
+			} else {
+				ans.classList.add('hidden');
+				icon.textContent = '＋';
+			}
+		}
+
+		// --- FORMS ---
+		async function handleContactSubmit(e) {
+			e.preventDefault();
+			const name = document.getElementById('contactName').value;
+			const email = document.getElementById('contactEmail').value;
+			const subject = document.getElementById('contactSubject').value;
+			const message = document.getElementById('contactMessage').value;
+
+			try {
+				const res = await fetch(`${API_BASE_URL}/contacts`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ name, email, subject, message })
+				});
+				const json = await res.json();
+				if (json.success) {
+					showToast('Thank you! Your message has been submitted.');
+					document.getElementById('contactForm').reset();
+				} else {
+					showToast(json.message || 'Failed to submit inquiry', 'error');
+				}
+			} catch (err) {
+				showToast('Submission error. Please try again.', 'error');
+			}
+		}
+
+		async function handleNewsletterSubmit(e) {
+			e.preventDefault();
+			const email = document.getElementById('newsletterEmail').value;
+
+			try {
+				const res = await fetch(`${API_BASE_URL}/newsletter`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ email })
+				});
+				const json = await res.json();
+				if (json.success) {
+					showToast('Successfully subscribed to weekly broker alerts!');
+					document.getElementById('newsletterForm').reset();
+				} else {
+					showToast(json.message || 'Subscription failed', 'error');
+				}
+			} catch (err) {
+				showToast('Subscription error. Please try again.', 'error');
+			}
+		}
+	</script>
+</body>
+
+</html>

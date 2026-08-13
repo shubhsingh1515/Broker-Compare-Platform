@@ -137,6 +137,7 @@ const BrokerForm = () => {
         const b = brokerRes.data.data.broker;
         setFormData({
           ...b,
+          categoryId: b.categoryId?._id || b.categoryId || '',
           regulation: Array.isArray(b.regulation) ? b.regulation.join(', ') : b.regulation,
           accountTypes: Array.isArray(b.accountTypes) ? b.accountTypes.join(', ') : b.accountTypes,
           depositMethods: Array.isArray(b.depositMethods) ? b.depositMethods.join(', ') : b.depositMethods,
@@ -331,6 +332,23 @@ const BrokerForm = () => {
                   <option value="stock">Stock Broker</option>
                   <option value="forex">Forex Broker</option>
                   <option value="both">Both (Stock & Forex)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-gray-300 uppercase mb-2">Category</label>
+                <select
+                  name="categoryId"
+                  value={formData.categoryId || ''}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-sky-500"
+                >
+                  <option value="">Select Category (Optional)</option>
+                  {categories.map((cat) => (
+                    <option key={cat._id} value={cat._id}>
+                      {cat.name} ({cat.type})
+                    </option>
+                  ))}
                 </select>
               </div>
 
