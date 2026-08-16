@@ -6,6 +6,7 @@ const brokerSchema = new mongoose.Schema(
     slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
     logo: { type: String, required: true },
     brokerType: { type: String, enum: ['stock', 'forex', 'both'], required: true, index: true },
+    region: { type: String, enum: ['indian', 'foreign'], default: 'indian', index: true },
     categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', index: true },
     founded: { type: Number, required: true },
     headOffice: { type: String, required: true },

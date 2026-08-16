@@ -9,6 +9,7 @@ exports.getBrokers = async (req, res, next) => {
   try {
     const {
       type,
+      region,
       category,
       country,
       regulation,
@@ -26,6 +27,16 @@ exports.getBrokers = async (req, res, next) => {
     } = req.query;
 
     const query = { isActive: true };
+
+    if (region && region !== 'all') {
+      if (region === 'indian') {
+        query.$or = [{ region: 'indian' }, { country: new RegExp('India', 'i') }];
+      } else if (region === 'foreign') {
+        query.$or = [{ region: 'foreign' }, { country: { $ne: 'India' } }];
+      } else {
+        query.region = region;
+      }
+    }
 
     if (type && type !== 'all') {
       query.brokerType = { $in: [type, 'both'] };
@@ -104,13 +115,13 @@ exports.getBrokers = async (req, res, next) => {
 // GET /api/brokers/search
 exports.searchBrokers = async (req, res, next) => {
   try {
-    const { q } = req.query;
+    const { q, region } = req.query;
     if (!q || q.trim().length === 0) {
       return successResponse(res, 200, 'Search results', []);
     }
 
     const regex = new RegExp(q, 'i');
-    const brokers = await Broker.find({
+    const searchQuery = {
       isActive: true,
       $or: [
         { name: regex },
@@ -119,8 +130,18 @@ exports.searchBrokers = async (req, res, next) => {
         { regulation: regex },
         { brokerType: regex }
       ]
-    })
-      .select('name slug logo brokerType overallRating country trustScore tags')
+    };
+
+    if (region && region !== 'all') {
+      if (region === 'indian') {
+        searchQuery.region = 'indian';
+      } else if (region === 'foreign') {
+        searchQuery.region = 'foreign';
+      }
+    }
+
+    const brokers = await Broker.find(searchQuery)
+      .select('name slug logo brokerType region overallRating country trustScore tags')
       .limit(8);
 
     return successResponse(res, 200, 'Search suggestions', brokers);
