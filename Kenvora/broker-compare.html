@@ -438,10 +438,8 @@
 
 	<!-- JAVASCRIPT LOGIC FOR BACKEND API & INTERACTIVE UI -->
 	<script>
-		// Configurable API base endpoint (Support Render deployment & local fallback)
-		const PRIMARY_API_URL = 'https://broker-api-hraf.onrender.com/api';
-		const LOCAL_API_URL = 'http://localhost:5000/api';
-		let API_BASE_URL = PRIMARY_API_URL;
+		// Server API base endpoint
+		const API_BASE_URL = 'https://broker-api-hraf.onrender.com/api';
 
 		// Global State
 		let allBrokersList = [];
@@ -458,9 +456,8 @@
 		let dirTag = '';
 		let dirSearch = '';
 
-		document.addEventListener('DOMContentLoaded', async () => {
+		document.addEventListener('DOMContentLoaded', () => {
 			loadSavedComparisonState();
-			await determineWorkingApiUrl();
 			initPageData();
 
 			// Hero search listener
@@ -490,16 +487,7 @@
 			document.getElementById('newsletterForm').addEventListener('submit', handleNewsletterSubmit);
 		});
 
-		async function determineWorkingApiUrl() {
-			try {
-				const res = await fetch(`${PRIMARY_API_URL}/brokers?limit=1`, { method: 'GET' });
-				if (res.ok) {
-					API_BASE_URL = PRIMARY_API_URL;
-					return;
-				}
-			} catch (e) {}
-			API_BASE_URL = LOCAL_API_URL;
-		}
+
 
 		function showToast(msg, type = 'success') {
 			const container = document.getElementById('toastContainer');
