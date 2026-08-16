@@ -285,8 +285,8 @@
 				<div>
 					<h4 class="font-extrabold text-foreground mb-3 uppercase tracking-wider">Compare Hub</h4>
 					<ul class="space-y-2">
-						<li><a href="indian-broker-compare.html" class="text-gold font-bold hover:underline">🇮🇳 Indian Brokers Compare</a></li>
-						<li><a href="foreign-broker-compare.html" class="hover:text-foreground transition">🌐 Foreign Brokers Compare</a></li>
+						<li><a href="indian-broker-compare.html" class="hover:text-foreground transition flex items-center gap-1"><span class="text-sm">🇮🇳</span> Indian Brokers Compare</a></li>
+						<li><a href="foreign-broker-compare.html" class="hover:text-foreground transition flex items-center gap-1"><span class="text-sm">🌐</span> Foreign Brokers Compare</a></li>
 						<li><a href="broker-compare.html" class="hover:text-foreground transition">📊 All Brokers Matrix</a></li>
 					</ul>
 				</div>
@@ -313,25 +313,28 @@
 	</div>
 
 	<!-- SLOT SELECTION MODAL -->
-	<div id="slotModalBackdrop" class="modal-backdrop">
-		<div class="modal-card max-w-lg p-6 space-y-4">
+	<div id="slotModalBackdrop" class="custom-modal-backdrop" onclick="if(event.target===this) closeSlotModal()">
+		<div class="custom-modal-box space-y-4 max-w-lg">
 			<div class="flex items-center justify-between border-b border-border/40 pb-3">
-				<h3 class="font-extrabold text-foreground text-sm" id="slotModalTitle">Select Indian Broker</h3>
-				<button onclick="closeSlotModal()" data-no-popup="true" class="text-gray-400 hover:text-black font-bold text-lg">✕</button>
+				<h3 class="font-extrabold text-foreground text-sm font-display" id="slotModalTitle">Select Indian Broker</h3>
+				<button onclick="closeSlotModal()" data-no-popup="true" class="text-gray-400 hover:text-black font-bold text-lg px-2">✕</button>
 			</div>
-			<input type="text" id="slotModalSearch" onkeyup="renderSlotModalBrokers()" placeholder="Type Indian broker name (e.g. Zerodha, Angel One, Groww)..." class="w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-xs outline-none focus:border-gold">
-			<div id="slotModalBrokersList" class="space-y-2 max-h-72 overflow-y-auto pr-1">
+			<input type="text" id="slotModalSearch" oninput="renderSlotModalBrokers()" onkeyup="renderSlotModalBrokers()" placeholder="Type Indian broker name (e.g. Zerodha, Angel One, Groww)..." class="form-input-field w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-xs outline-none focus:border-gold">
+			<div id="slotModalBrokersList" class="space-y-2 max-h-[55vh] overflow-y-auto pr-1">
 				<!-- Dynamically populated via JS -->
 			</div>
 		</div>
 	</div>
 
 	<!-- BROKER DETAIL MODAL -->
-	<div id="brokerDetailModalBackdrop" class="modal-backdrop">
-		<div class="modal-card max-w-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto" id="brokerDetailContent">
+	<div id="brokerDetailModalBackdrop" class="custom-modal-backdrop" onclick="if(event.target===this) closeBrokerDetailModal()">
+		<div class="custom-modal-box space-y-4 max-w-2xl" id="brokerDetailContent">
 			<!-- Dynamically populated via JS -->
 		</div>
 	</div>
+
+	<!-- TOAST ALERTS CONTAINER -->
+	<div id="toastContainer" class="toast-container"></div>
 
 	<!-- JAVASCRIPT LOGIC FOR INDIAN BROKERS COMPARE PAGE -->
 	<script>
@@ -375,6 +378,13 @@
 					dirPage = 1;
 					fetchDirectoryBrokers();
 					document.getElementById('brokers-directory').scrollIntoView({ behavior: 'smooth' });
+				}
+			});
+
+			window.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') {
+					closeSlotModal();
+					closeBrokerDetailModal();
 				}
 			});
 		}
@@ -773,7 +783,17 @@
 			const query = (document.getElementById('slotModalSearch').value || '').toLowerCase().trim();
 			const listContainer = document.getElementById('slotModalBrokersList');
 
+			if (allBrokersList.length === 0) {
+				listContainer.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs">Loading verified Indian brokers...</div>';
+				return;
+			}
+
 			const filtered = allBrokersList.filter(b => b.name.toLowerCase().includes(query) || (b.country || '').toLowerCase().includes(query));
+
+			if (filtered.length === 0) {
+				listContainer.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs">No matching Indian brokers found.</div>';
+				return;
+			}
 
 			listContainer.innerHTML = filtered.map(b => {
 				const isAlreadySelected = selectedBrokers.some(sb => sb._id === b._id);
@@ -1098,14 +1118,13 @@
 		}
 
 		function showToast(msg, type = 'success') {
+			const container = document.getElementById('toastContainer');
+			if (!container) return;
 			const toast = document.createElement('div');
-			toast.className = `fixed bottom-6 right-6 z-50 px-4 py-2.5 rounded-xl shadow-lg text-xs font-bold text-white transition-all transform translate-y-2 ${type === 'error' ? 'bg-rose-600' : 'bg-gold-dark'}`;
+			toast.className = `toast-message toast-${type}`;
 			toast.textContent = msg;
-			document.body.appendChild(toast);
-			setTimeout(() => {
-				toast.style.opacity = '0';
-				setTimeout(() => toast.remove(), 300);
-			}, 3000);
+			container.appendChild(toast);
+			setTimeout(() => toast.remove(), 4000);
 		}
 	</script>
 </body>

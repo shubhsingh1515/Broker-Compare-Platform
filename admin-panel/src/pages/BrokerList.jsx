@@ -21,18 +21,19 @@ const BrokerList = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [type, setType] = useState('all');
+  const [region, setRegion] = useState('all');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     fetchBrokers();
-  }, [search, type, page]);
+  }, [search, type, region, page]);
 
   const fetchBrokers = async () => {
     setLoading(true);
     try {
       const res = await api.get('/brokers', {
-        params: { search, type, page, limit: 10 }
+        params: { search, type, region, page, limit: 10 }
       });
       setBrokers(res.data.data);
       setTotalPages(res.data.meta?.pages || 1);
@@ -83,8 +84,20 @@ const BrokerList = () => {
           />
         </div>
 
-        <div className="flex items-center space-x-3 w-full md:w-auto">
-          <Filter className="w-4 h-4 text-gray-400" />
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <div className="flex items-center space-x-2">
+            <Filter className="w-4 h-4 text-gray-400" />
+            <select
+              value={region}
+              onChange={(e) => { setRegion(e.target.value); setPage(1); }}
+              className="bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500"
+            >
+              <option value="all">All Regions (Indian & Foreign)</option>
+              <option value="indian">🇮🇳 Indian Brokers</option>
+              <option value="foreign">🌐 Foreign Brokers</option>
+            </select>
+          </div>
+
           <select
             value={type}
             onChange={(e) => { setType(e.target.value); setPage(1); }}
@@ -104,7 +117,7 @@ const BrokerList = () => {
             <thead className="bg-gray-950 text-gray-400 uppercase text-[11px] tracking-wider border-b border-gray-800">
               <tr>
                 <th className="py-3.5 px-4">Broker Name</th>
-                <th className="py-3.5 px-4">Type</th>
+                <th className="py-3.5 px-4">Region & Type</th>
                 <th className="py-3.5 px-4">Country & Regulation</th>
                 <th className="py-3.5 px-4">Min Deposit</th>
                 <th className="py-3.5 px-4">Rating & Trust</th>
@@ -138,11 +151,20 @@ const BrokerList = () => {
                       </div>
                     </td>
                     <td className="py-4 px-4">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider ${
-                        b.brokerType === 'stock' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
-                      }`}>
-                        {b.brokerType}
-                      </span>
+                      <div className="flex flex-col space-y-1 items-start">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10.5px] font-semibold uppercase tracking-wider ${
+                          (b.region === 'indian' || (!b.region && b.country?.toLowerCase().includes('india')))
+                            ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                            : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
+                        }`}>
+                          {(b.region === 'indian' || (!b.region && b.country?.toLowerCase().includes('india'))) ? '🇮🇳 Indian' : '🌐 Foreign'}
+                        </span>
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10.5px] font-semibold uppercase tracking-wider ${
+                          b.brokerType === 'stock' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
+                        }`}>
+                          {b.brokerType}
+                        </span>
+                      </div>
                     </td>
                     <td className="py-4 px-4">
                       <span className="block font-medium text-white">{b.country}</span>

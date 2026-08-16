@@ -378,7 +378,7 @@
 					<ul class="space-y-2">
 						<li><a href="indian-broker-compare.html" class="hover:text-foreground transition flex items-center gap-1"><span class="text-sm">🇮🇳</span> Indian Brokers Compare</a></li>
 						<li><a href="foreign-broker-compare.html" class="hover:text-foreground transition flex items-center gap-1"><span class="text-sm">🌐</span> Foreign Brokers Compare</a></li>
-						<li><a href="broker-compare.html" class="text-gold font-bold hover:underline">📊 All Brokers Matrix</a></li>
+						<li><a href="broker-compare.html" class="hover:text-foreground transition">📊 All Brokers Matrix</a></li>
 					</ul>
 				</div>
 
@@ -485,6 +485,14 @@
 			// Forms
 			document.getElementById('contactForm').addEventListener('submit', handleContactSubmit);
 			document.getElementById('newsletterForm').addEventListener('submit', handleNewsletterSubmit);
+
+			window.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') {
+					closeSlotModal();
+					closeBrokerDetailModal();
+					closeBlogModal();
+				}
+			});
 		});
 
 
@@ -930,7 +938,17 @@
 			const query = (document.getElementById('slotModalSearch').value || '').toLowerCase().trim();
 			const listContainer = document.getElementById('slotModalBrokersList');
 
+			if (allBrokersList.length === 0) {
+				listContainer.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs">Loading verified brokers...</div>';
+				return;
+			}
+
 			const filtered = allBrokersList.filter(b => b.name.toLowerCase().includes(query) || (b.country || '').toLowerCase().includes(query));
+
+			if (filtered.length === 0) {
+				listContainer.innerHTML = '<div class="p-6 text-center text-muted-foreground text-xs">No matching brokers found.</div>';
+				return;
+			}
 
 			listContainer.innerHTML = filtered.map(b => {
 				const isAlreadySelected = selectedBrokers.some(sb => sb._id === b._id);

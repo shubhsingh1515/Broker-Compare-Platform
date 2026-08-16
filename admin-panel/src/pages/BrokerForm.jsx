@@ -29,6 +29,7 @@ const BrokerForm = () => {
     slug: '',
     logo: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=200&auto=format&fit=crop&q=80',
     brokerType: 'stock',
+    region: 'indian',
     categoryId: '',
     founded: 2015,
     headOffice: 'Bengaluru, India',
@@ -38,7 +39,7 @@ const BrokerForm = () => {
     trustScore: 90,
     overallRating: 4.7,
     minDeposit: 0,
-    minDepositCurrency: 'USD',
+    minDepositCurrency: 'INR',
     maxLeverage: '1:500',
     accountTypes: 'Standard, ECN',
     tradingPlatforms: {
@@ -137,6 +138,7 @@ const BrokerForm = () => {
         const b = brokerRes.data.data.broker;
         setFormData({
           ...b,
+          region: b.region || (b.country?.toLowerCase().includes('india') ? 'indian' : 'foreign'),
           categoryId: b.categoryId?._id || b.categoryId || '',
           regulation: Array.isArray(b.regulation) ? b.regulation.join(', ') : b.regulation,
           accountTypes: Array.isArray(b.accountTypes) ? b.accountTypes.join(', ') : b.accountTypes,
@@ -319,6 +321,33 @@ const BrokerForm = () => {
                   className="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-sky-500"
                   placeholder="e.g. Zerodha"
                 />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-gray-300 uppercase mb-2">Market Region *</label>
+                <select
+                  name="region"
+                  value={formData.region || 'indian'}
+                  onChange={(e) => {
+                    const newRegion = e.target.value;
+                    setFormData((prev) => ({
+                      ...prev,
+                      region: newRegion,
+                      ...(!isEdit && newRegion === 'indian'
+                        ? { country: 'India', minDepositCurrency: 'INR', brokerType: prev.brokerType === 'forex' ? 'stock' : prev.brokerType }
+                        : !isEdit && newRegion === 'foreign'
+                        ? { country: prev.country === 'India' ? 'Global' : prev.country, minDepositCurrency: 'USD', brokerType: prev.brokerType === 'stock' ? 'forex' : prev.brokerType }
+                        : {})
+                    }));
+                  }}
+                  className="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-sky-500 font-semibold"
+                >
+                  <option value="indian">🇮🇳 Indian Broker (SEBI / Stock / FnO)</option>
+                  <option value="foreign">🌐 Foreign Broker (Forex / Global / CFD)</option>
+                </select>
+                <p className="text-[11px] text-gray-500 mt-1">
+                  Categorizes broker into Indian vs Foreign compare hubs.
+                </p>
               </div>
 
               <div>
