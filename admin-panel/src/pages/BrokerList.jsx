@@ -33,9 +33,22 @@ const BrokerList = () => {
     setLoading(true);
     try {
       const res = await api.get('/brokers', {
-        params: { search, type, region, page, limit: 10 }
+        params: {
+          search: search.trim() || undefined,
+          type: type !== 'all' ? type : undefined,
+          region: region !== 'all' ? region : undefined,
+          page,
+          limit: 10
+        }
       });
-      setBrokers(res.data.data);
+      let data = res.data.data || [];
+      if (region && region !== 'all') {
+        data = data.filter((b) => {
+          const isInd = b.region === 'indian' || (!b.region && (b.country || '').toLowerCase().includes('india'));
+          return region === 'indian' ? isInd : !isInd;
+        });
+      }
+      setBrokers(data);
       setTotalPages(res.data.meta?.pages || 1);
     } catch (err) {
       console.error(err);

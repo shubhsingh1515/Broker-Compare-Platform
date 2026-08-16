@@ -26,65 +26,80 @@ exports.getBrokers = async (req, res, next) => {
       limit = 12
     } = req.query;
 
-    const query = { isActive: true };
+    const andConditions = [{ isActive: true }];
 
     if (region && region !== 'all') {
       if (region === 'indian') {
-        query.$or = [{ region: 'indian' }, { country: new RegExp('India', 'i') }];
+        andConditions.push({
+          $or: [
+            { region: 'indian' },
+            { country: new RegExp('India', 'i') }
+          ]
+        });
       } else if (region === 'foreign') {
-        query.$or = [{ region: 'foreign' }, { country: { $ne: 'India' } }];
+        andConditions.push({
+          $or: [
+            { region: 'foreign' },
+            { country: { $not: new RegExp('India', 'i') } }
+          ]
+        });
       } else {
-        query.region = region;
+        andConditions.push({ region });
       }
     }
 
     if (type && type !== 'all') {
-      query.brokerType = { $in: [type, 'both'] };
+      andConditions.push({ brokerType: { $in: [type, 'both'] } });
     }
 
     if (category) {
       const categoryDoc = await Category.findOne({ slug: category });
       if (categoryDoc) {
-        query.categoryId = categoryDoc._id;
+        andConditions.push({ categoryId: categoryDoc._id });
       }
     }
 
     if (country) {
-      query.country = new RegExp(country, 'i');
+      andConditions.push({ country: new RegExp(country, 'i') });
     }
 
     if (regulation) {
-      query.regulation = { $in: [new RegExp(regulation, 'i')] };
+      andConditions.push({ regulation: { $in: [new RegExp(regulation, 'i')] } });
     }
 
     if (tag) {
-      query.tags = tag;
+      andConditions.push({ tags: tag });
     }
 
     if (featured === 'true') {
-      query.isFeatured = true;
+      andConditions.push({ isFeatured: true });
     }
 
     if (popular === 'true') {
-      query.isPopular = true;
+      andConditions.push({ isPopular: true });
     }
 
     if (minDepositMax) {
-      query.minDeposit = { $lte: Number(minDepositMax) };
+      andConditions.push({ minDeposit: { $lte: Number(minDepositMax) } });
     }
 
-    if (mt4 === 'true') query['tradingPlatforms.mt4'] = true;
-    if (mt5 === 'true') query['tradingPlatforms.mt5'] = true;
-    if (tradingView === 'true') query['tradingPlatforms.tradingView'] = true;
+    if (mt4 === 'true') andConditions.push({ 'tradingPlatforms.mt4': true });
+    if (mt5 === 'true') andConditions.push({ 'tradingPlatforms.mt5': true });
+    if (tradingView === 'true') andConditions.push({ 'tradingPlatforms.tradingView': true });
 
-    if (search) {
-      query.$or = [
-        { name: new RegExp(search, 'i') },
-        { country: new RegExp(search, 'i') },
-        { tags: new RegExp(search, 'i') },
-        { bestFor: new RegExp(search, 'i') }
-      ];
+    if (search && search.trim()) {
+      const s = search.trim();
+      andConditions.push({
+        $or: [
+          { name: new RegExp(s, 'i') },
+          { country: new RegExp(s, 'i') },
+          { tags: new RegExp(s, 'i') },
+          { bestFor: new RegExp(s, 'i') }
+        ]
+      });
     }
+
+    const query = andConditions.length > 1 ? { $and: andConditions } : (andConditions[0] || {});
 
     let sortOptions = { overallRating: -1 };
     if (sort === 'rating_desc') sortOptions = { overallRating: -1 };

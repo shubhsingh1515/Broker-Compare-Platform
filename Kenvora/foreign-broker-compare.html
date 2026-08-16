@@ -434,7 +434,8 @@
 				const res = await fetch(`${API_BASE_URL}/brokers?region=foreign&limit=100`);
 				const json = await res.json();
 				if (json.success) {
-					allBrokersList = json.data || [];
+					const rawList = json.data || [];
+					allBrokersList = rawList.filter(b => b.region === 'foreign' || (!b.region && !(b.country || '').toLowerCase().includes('india')));
 				}
 			} catch (err) {
 				console.error('Error fetching Foreign brokers list:', err);
@@ -880,11 +881,12 @@
 				const res = await fetch(`${API_BASE_URL}/brokers?${params.toString()}`);
 				const json = await res.json();
 				if (json.success) {
-					const brokers = json.data || [];
+					let brokers = json.data || [];
+					brokers = brokers.filter(b => b.region === 'foreign' || (!b.region && !(b.country || '').toLowerCase().includes('india')));
 					const meta = json.meta || {};
 					dirTotalPages = meta.pages || 1;
 
-					document.getElementById('directoryCountText').textContent = `Showing ${meta.total || brokers.length} verified Foreign broker profiles`;
+					document.getElementById('directoryCountText').textContent = `Showing ${brokers.length} verified Foreign broker profiles`;
 					document.getElementById('paginationText').textContent = `Page ${dirPage} of ${dirTotalPages}`;
 					document.getElementById('prevPageBtn').disabled = dirPage <= 1;
 					document.getElementById('nextPageBtn').disabled = dirPage >= dirTotalPages;
